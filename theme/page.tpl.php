@@ -196,7 +196,7 @@
                     <option value="Гостиная" <?= in_array('Гостиная', (array)($c['values']['rooms'] ?? [])) ? 'selected' : '' ?>>Гостиная</option>
                     <option value="Спальня" <?= in_array('Спальня', (array)($c['values']['rooms'] ?? [])) ? 'selected' : '' ?>>Спальня</option>
                     <option value="Кухня" <?= in_array('Кухня',(array)($c['values']['rooms'] ?? [])) ? 'selected' : '' ?>>Кухня</option>
-                    <option value="Кабинет" <?= in_array('Кабинет', (array)($c['values']['rooms'] ?? [])) ? 'selected' : '' ?>>Кабинет / Офис</option>
+                    <option value="Кабинет" <?= in_array('Кабинет', (array)($c['values']['rooms'] ?? [])) ? 'selected' : '' ?>>Кабинет</option>
                     <option value="Ванная" <?= in_array('Ванная', (array)($c['values']['rooms'] ?? [])) ? 'selected' : '' ?>>Ванная комната</option>
                     <option value="Прихожая" <?= in_array('Прихожая', (array)($c['values']['rooms'] ?? [])) ? 'selected' : '' ?>>Прихожая</option>
                 </select>
