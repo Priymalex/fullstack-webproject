@@ -79,13 +79,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     require_once __DIR__ . '/../scripts/db.php';
 
     try {
-        $stmt = $db->prepare("SELECT user_id, login, password_hash FROM users WHERE login = ?");
+        $stmt = $db->prepare("SELECT u.order_id, u.login, u.password_hash, o.firstName, o.email, o.telephone 
+                              FROM Users u 
+                              JOIN Ordering o ON u.order_id = o.order_id 
+                              WHERE u.login = ?");
         $stmt->execute([$login]);
         $user = $stmt->fetch();
 
         if ($user && password_verify($pass, $user['password_hash'])) {
             $_SESSION['login'] = $user['login'];
             $_SESSION['user_id'] = $user['user_id']; 
+            $_SESSION['user_email'] = $['email'];
+            $_SESSION['user_phone'] = $['telephone']
             
             session_regenerate_id(true); 
 
