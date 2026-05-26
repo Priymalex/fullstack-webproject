@@ -1163,3 +1163,45 @@ body[data-user-id] .success-alert {
     z-index: 100 !important;
     position: relative !important;
 }
+
+.menu__box .menu__item {
+    display: block;
+    padding: 12px 20px;
+    margin: 10px 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+/* Кнопка Войти */
+.menu__box a[href*="login.php"] {
+    background: #4CAF50;
+    border: none;
+}
+
+/* Кнопка Профиль */
+.menu__box a[href="#section3"] {
+    background: #2196F3;
+    border: none;
+}
+
+/* Кнопка Выйти */
+.menu__box a[href*="logout.php"] {
+    background: #f44336;
+    border: none;
+}
+
+/* Обычные пункты */
+.menu__box a:not([href*="login.php"]):not([href="#section3"]):not([href*="logout.php"]) {
+    border: 1px solid rgba(255,255,255,0.3);
+    background: transparent;
+}
+
+/* Эффект наведения для всех */
+.menu__box .menu__item:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
