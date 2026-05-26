@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $_SESSION['login'] = $user['login'];
             $_SESSION['user_id'] = $user['user_id']; 
             $_SESSION['user_email'] = $['email'];
-            $_SESSION['user_phone'] = $['telephone']
+            $_SESSION['user_phone'] = $['telephone'];
             
             session_regenerate_id(true); 
 
