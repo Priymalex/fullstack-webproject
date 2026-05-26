@@ -162,7 +162,7 @@ function process_form_submission($request, $mode, $targetUserId = null) {
         }
         }
 
-        $db->commit;
+        $db->commit();
     } catch (PDOException $e) {
         error_log("DB Error: " . $e->getMessage());
         if ($is_ajax) {
