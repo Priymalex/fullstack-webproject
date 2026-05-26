@@ -122,7 +122,7 @@ function process_form_submission($request, $mode, $targetUserId = null) {
 
             if(!empty($data['roomType']) && is_array($data['roomType'])){
                 $roomStmt = $db->prepare("INSERT INTO Connection2 (order_id, room_id) VALUES(?,?)");
-                foreach($data[roomType] as $roomName){
+                foreach($data['roomType'] as $roomName){
                     $roomIdStmt=$db->prepare("SELECT rooms_id FROM Rooms WHERE room_name = ?");
                     $roomIdStmt->execute([$roomName]);
                     $room = $roomIdStmt->fetch();
