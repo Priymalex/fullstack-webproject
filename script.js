@@ -36,7 +36,7 @@ $('.gallery-slider').slick({
 
                     if (form) {
                     form.addEventListener('submit', function(e) {
-                    e.preventDefault();
+                    /*e.preventDefault();
 
                     const userId = document.body.getAttribute('data-user-id');
                     const isUpdate = userId && userId !== ''; 
