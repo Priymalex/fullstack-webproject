@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Скрываем сообщение через 5 секунд
                     setTimeout(() => {
                         if (statusMsg) statusMsg.innerHTML = '';
-                    }, 5000);
+                    }, 30000);
                 }
             })
             .catch(error => {
