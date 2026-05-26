@@ -34,6 +34,21 @@ $path = trim($path, '/');
 
 // --- Маршруты ---
 
+// === МАРШРУТЫ ДЛЯ API ===
+if ($path === 'api/users' && $realMethod === 'POST') {
+    $response = front_post($request);
+}
+elseif (preg_match('#^api/users/(\d+)$#', $path, $matches) && $realMethod === 'PUT') {
+    $request['user_id'] = (int)$matches[1];
+    $response = front_put($request);
+}
+// === КОНЕЦ МАРШРУТОВ ДЛЯ API ===
+
+// Главная страница
+elseif ($path === '' || $path === 'index.php') {
+    // ... остальной код
+}
+
 // Главная страница
 if ($path === '' || $path === 'index.php') {
     // GET запрос - показать форму
