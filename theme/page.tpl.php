@@ -182,7 +182,7 @@
                         <?php if (!empty($c['errors']['firstName'])): ?>
                             <span class="error-text"><?php echo $c['errors']['firstName']; ?></span>
                         <?php endif; ?>
-                        <input type="email" name = "mail" class = "formInput" placeholder="E-mail " value="<?php echo htmlspecialchars($c['values']['email'] ?? ''); ?>">
+                        <input type="email" name = "mail" class = "formInput" placeholder="E-mail " value="<?php echo htmlspecialchars($c['values']['mail'] ?? ''); ?>">
                         <?php if (!empty($c['errors']['email'])): ?>
                             <span class="error-text"><?php echo $c['errors']['email']; ?></span>
                         <?php endif; ?>
