@@ -115,7 +115,7 @@ function process_form_submission($request, $mode, $targetUserId = null) {
                 $data['firstName'], 
                 $data['telephone'], 
                 $data['email'], 
-                1, // consent по умолчанию   
+                isset($data['agreement']) ? 1 : 0    
             ]);
             
             $orderId=$db->lastInsertId();
