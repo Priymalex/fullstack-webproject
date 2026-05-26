@@ -15,7 +15,47 @@ if (empty($_SESSION['csrf_token'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // ... показ формы (оставьте как есть)
+   <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        .container { max-width: 300px; margin: 0 auto; }
+        form { background: #f9f9f9; padding: 20px; border-radius: 10px; }
+        input { width: 100%; padding: 8px; margin: 10px 0; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        .error { color: red; margin: 10px 0; text-align: center; }
+        .register-link { text-align: center; margin-top: 15px; }
+        .register-link a { color: #008CBA; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <?php if ($errors): ?>
+            <div class="error-box">
+                <?= htmlspecialchars($errors) ?>
+            </div>
+        <?php endif; ?>
+
+    <div class="container">
+        <form action="login.php" method="POST">
+
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+
+            <h2 style="text-align: center;">Вход в систему</h2>
+            <input name="login" id="login" type="text" placeholder="Логин" required autocomplete="username">
+            <input name="pass" id="pass" type="password" placeholder="Пароль" required autocomplete="current-password">
+            <button type="submit">Войти</button>
+
+        </form>
+        <div class="register-link">
+            <a href="/fullstack-webproject/">Нет заявки? Заполните форму заказа</a>
+        </div>
+    </div>
+</body>
+</html>
 } else {
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         setcookie('login_error', 'Ошибка безопасности', 0, '/');
