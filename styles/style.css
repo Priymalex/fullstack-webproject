@@ -1156,3 +1156,10 @@ body[data-user-id] .success-alert {
         word-break: break-all;
     }
 }
+
+.header-text nav a {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    z-index: 100 !important;
+    position: relative !important;
+}
