@@ -110,7 +110,7 @@ $('.gallery-slider').slick({
                 }
             });
         });
-    }
+    }*/
 
 
 
