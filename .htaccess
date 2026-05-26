@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /fullstack-webproject/
+
+# Если файл или папка существуют, не перенаправляем
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Все остальные запросы перенаправляем на index.php
+RewriteRule ^(.*)$ index.php [QSA,L]
