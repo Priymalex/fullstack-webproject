@@ -21,7 +21,7 @@
                         <p><a href = "#about">Материалы</a></p>
                         <p><a href = "#reviews">Отзывы</a></p>
                         <?php if (!empty($_SESSION['user_id'])): ?>
-                        <p><a href="#section3"><?php echo htmlspecialchars($_SESSION['login'] ?? 'Мой профиль'); ?></a></p>
+                        <p><a href="#reviews"><?php echo htmlspecialchars($_SESSION['login'] ?? 'Мой профиль'); ?></a></p>
                         <p><a href="/fullstack-webproject/modules/logout.php" style="color: #ff4d4d;">Выйти</a></p>
                     <?php else: ?>
                         <p><a href="/fullstack-webproject/modules/login.php">Войти</a></p>
@@ -38,10 +38,10 @@
                         <li><a class="menu__item" href="#about">Материалы</a></li>
                         <li><a class="menu__item" href="#reviews">Отзывы</a></li>
                         <?php if (!empty($_SESSION['user_id'])): ?>
-                        <li><a href="#section3"><?php echo htmlspecialchars($_SESSION['login'] ?? 'Мой профиль'); ?></a></li>
-                        <li><a href="/fullstack-webproject/modules/logout.php" style="color: #ff4d4d;">Выйти</a></li>
+                        <li><a  class="menu__item" href="#reviews"><?php echo htmlspecialchars($_SESSION['login'] ?? 'Мой профиль'); ?></a></li>
+                        <li><a  class="menu__item" href="/fullstack-webproject/modules/logout.php" style="color: #ff4d4d;">Выйти</a></li>
                     <?php else: ?>
-                        <li><a href="/fullstack-webproject/modules/login.php">Войти</a></li>
+                        <li><a  class="menu__item" href="/fullstack-webproject/modules/login.php">Войти</a></li>
                     <?php endif; ?>
                     </ul>
             </div>
