@@ -26,7 +26,7 @@ function front_get($request) {
             if ($dbUser) {
                 $values['firstName'] = $dbUser['firstName'];
                 $values['phone'] = $dbUser['telephone'];
-                $values['email'] = $dbUser['email'];
+                $values['mail'] = $dbUser['email'];
                 $values['agreed'] = $dbUser['agreed'];
 
                 $roomsStmt = $db->prepare("SELECT r.room_name FROM Connection2 c JOIN Rooms r ON c.room_id = r.rooms_id WHERE c.order_id=?");
