@@ -7,7 +7,7 @@ define('INCLUDE_PATH', './scripts' . PATH_SEPARATOR . './modules');
 
 // Базовые настройки сайта
 $conf = array(
-  'sitename' => 'ARENX FAMIlY',
+  'sitename' => 'Aveji',
   'theme' => './theme', 
   'charset' => 'UTF-8',
   'clean_urls' => TRUE,
