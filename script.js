@@ -36,13 +36,13 @@ $('.gallery-slider').slick({
 
                     if (form) {
                     form.addEventListener('submit', function(e) {
-                    /*e.preventDefault();
+                    e.preventDefault();
 
                     const userId = document.body.getAttribute('data-user-id');
                     const isUpdate = userId && userId !== ''; 
 
                     const method = isUpdate ? 'PUT' : 'POST';
-                    const apiPath = isUpdate ? `/fullstack-webproject/api/users/${userId}` : '/fullstack-webproject';
+                    const apiPath = isUpdate ? `/fullstack-webproject/api/users/${userId}` : '/fullstack-webproject/api/users';
 
                     const formData = new FormData(form);
                     const bodyData = new URLSearchParams(formData);
@@ -110,7 +110,7 @@ $('.gallery-slider').slick({
                 }
             });
         });
-    }*/
+    }
 
 
 
