@@ -192,7 +192,7 @@
                         <?php endif; ?>
                         <div class="form-group">
                 <label for="roomType">Тип помещения (можно выбрать несколько):</label>
-                <select name="roomType" id="roomType" class="formInput form-select" multiple size="3">
+                <select name="roomType[]" id="roomType" class="formInput form-select" multiple size="3">
                     <option value="Гостиная" <?= in_array('Гостиная', (array)($c['values']['rooms'] ?? [])) ? 'selected' : '' ?>>Гостиная</option>
                     <option value="Спальня" <?= in_array('Спальня', (array)($c['values']['rooms'] ?? [])) ? 'selected' : '' ?>>Спальня</option>
                     <option value="Кухня" <?= in_array('Кухня',(array)($c['values']['rooms'] ?? [])) ? 'selected' : '' ?>>Кухня</option>
