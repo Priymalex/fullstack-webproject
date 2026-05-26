@@ -14,8 +14,15 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
+$errors = !empty($_COOKIE['login_error']) ? $_COOKIE['login_error'] : '';
+if ($errors) {
+    setcookie('login_error', '', time() - 3600, '/'); 
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-   <!DOCTYPE html>
+    // HTML форма
+?>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -32,23 +39,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     </style>
 </head>
 <body>
-
-    <?php if ($errors): ?>
-            <div class="error-box">
-                <?= htmlspecialchars($errors) ?>
-            </div>
-        <?php endif; ?>
-
     <div class="container">
+        <?php if ($errors): ?>
+            <div class="error"><?= htmlspecialchars($errors) ?></div>
+        <?php endif; ?>
+        
         <form action="login.php" method="POST">
-
             <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
-
             <h2 style="text-align: center;">Вход в систему</h2>
-            <input name="login" id="login" type="text" placeholder="Логин" required autocomplete="username">
-            <input name="pass" id="pass" type="password" placeholder="Пароль" required autocomplete="current-password">
+            <input name="login" type="text" placeholder="Логин" required autocomplete="username">
+            <input name="pass" type="password" placeholder="Пароль" required autocomplete="current-password">
             <button type="submit">Войти</button>
-
         </form>
         <div class="register-link">
             <a href="/fullstack-webproject/">Нет заявки? Заполните форму заказа</a>
@@ -56,7 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     </div>
 </body>
 </html>
+<?php
 } else {
+    // Обработка POST запроса
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         setcookie('login_error', 'Ошибка безопасности', 0, '/');
         header('Location: login.php');
@@ -86,8 +89,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $_SESSION['user_id'] = $user['order_id'];
             $_SESSION['login'] = $user['login'];
             $_SESSION['user_name'] = $user['firstName'];
-            $_SESSION['user_email'] = $user['email'];   // ← сохраняем email
-            $_SESSION['user_phone'] = $user['telephone']; // ← сохраняем телефон (опционально)
+            $_SESSION['user_email'] = $user['email'];
+            $_SESSION['user_phone'] = $user['telephone'];
             
             session_regenerate_id(true);
             
