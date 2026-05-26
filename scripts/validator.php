@@ -4,10 +4,10 @@ function validate_form_array($data) {
 
     // Получаем данные из формы
     $firstName = $data['firstName'] ?? '';
-    $phone = $data['telephone'] ?? '';
-    $email = $data['mail'] ?? '';
+    $phone = $data['phone'] ?? '';           // Исправлено: phone, а не telephone
+    $email = $data['email'] ?? '';           // Исправлено: email, а не mail
     $rooms = $data['roomType'] ?? [];
-    $agreement = isset($data['agreement']) && ($data['agreement'] === true  $data['agreement'] === 'on'  $data['agreement'] === '1');
+    $agreement = isset($data['agreement']) && ($data['agreement'] === true || $data['agreement'] === 'on' || $data['agreement'] === '1');
 
     // Валидация имени (буквы, пробелы, дефис)
     if (empty($firstName) || !preg_match('/^[a-zA-Zа-яёА-ЯЁ\s\-]+$/u', $firstName)) {
@@ -16,21 +16,22 @@ function validate_form_array($data) {
 
     // Валидация телефона (11 цифр, опционально + в начале)
     if (empty($phone) || !preg_match('/^\+?[0-9]{11}$/', $phone)) {
-        $errors['telephone'] = "Введите 11 цифр вашего номера (РФ), например: 79991234567";
+        $errors['phone'] = "Введите 11 цифр вашего номера (РФ), например: 79991234567";
     }
 
     // Валидация email
     if (empty($email) || !preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $email)) {
-        $errors['mail'] = "Введите корректный email, например: name@example.com";
+        $errors['email'] = "Введите корректный email, например: name@example.com";
     }
 
     // Валидация выбора комнат (можно выбрать несколько)
-    if (empty($rooms)  !is_array($rooms)  count($rooms) === 0) {
+    if (empty($rooms) || !is_array($rooms) || count($rooms) === 0) {
         $errors['roomType'] = "Выберите хотя бы один тип помещения";
     }
 
-    // Дополнительная валидация: проверяем, что выбранные комнаты есть в списке допустимых
-    $allowedRooms = ['livingroom', 'bedroom', 'kitchen', 'office', 'bathroom', 'hallway'];
+    // Допустимые комнаты на РУССКОМ (как в базе данных)
+    $allowedRooms = ['Гостиная', 'Спальня', 'Кухня', 'Кабинет', 'Ванная', 'Прихожая'];
+    
     if (!empty($rooms) && is_array($rooms)) {
         foreach ($rooms as $room) {
             if (!in_array($room, $allowedRooms)) {
