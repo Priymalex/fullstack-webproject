@@ -142,7 +142,7 @@ function process_form_submission($request, $mode, $targetUserId = null) {
             $stmt->execute([
                 $data['firstName'], 
                 $data['telephone'], 
-                $data['email'], 
+                $data['mail'], 
                 $targetUserId
             ]);
 
