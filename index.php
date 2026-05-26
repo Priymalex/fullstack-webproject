@@ -8,7 +8,7 @@ require_once __DIR__ . '/scripts/init.php';
 require_once __DIR__ . '/modules/front.php';
 
 $realMethod = $_SERVER['REQUEST_METHOD'];
-$rawInput = file_get_contents('php://input'); // сырой json содержимое тела запроса
+$rawInput = file_get_contents('php://input');
 $parsedInput = [];
 
 if (!empty($rawInput)) {
@@ -27,18 +27,30 @@ $request = [
     'method' => $realMethod,
 ];
 
-$requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); // достём url 
-
-$pathParts = explode('fullstack-webproject', $requestUri); // отрезаем от него fullstack
-$path = end($pathParts); // берем хвост
-
-// Очищаем от слэшей. Главная страница станет пустой строкой ''
+$requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$pathParts = explode('fullstack-webproject', $requestUri);
+$path = end($pathParts);
 $path = trim($path, '/');
 
 // --- Маршруты ---
 
+// Главная страница
 if ($path === '' || $path === 'index.php') {
-    $response = front_get($request);
+    // GET запрос - показать форму
+    if ($realMethod === 'GET') {
+        $response = front_get($request);
+    }
+    // POST запрос - обработать форму
+    elseif ($realMethod === 'POST') {
+        $response = front_post($request);
+    }
+    else {
+        http_response_code(405);
+        $response = [
+            'headers' => ['Content-Type' => 'application/json'],
+            'entity' => json_encode(['status' => 'error', 'message' => 'Method not allowed'])
+        ];
+    }
 }
 elseif ((strpos($path, 'api/users') !== false || $path === 'form-fallback') && $realMethod === 'POST') {
     $response = front_post($request);
